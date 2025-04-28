@@ -1,0 +1,41 @@
+
+class StandardShipping {
+    calculate(order) {
+      return 5; // Costo fijo estándar
+    }
+  }
+  
+  class ExpressShipping {
+    calculate(order) {
+      return 10 + order.weight * 0.5; // Base + costo por peso
+    }
+  }
+  
+  class InternationalShipping {
+    calculate(order) {
+      return 20 + order.weight * 1.5; // Base + costo internacional por peso
+    }
+  }
+  
+  // Contexto que usa la estrategia
+  class ShippingContext {
+    constructor(strategy) {
+      this.strategy = strategy;
+    }
+  
+    setStrategy(strategy) {
+      this.strategy = strategy;
+    }
+  
+    calculateShipping(order) {
+      return this.strategy.calculate(order);
+    }
+  }
+  
+  // Exportar clases para uso externo
+  module.exports = {
+    StandardShipping,
+    ExpressShipping,
+    InternationalShipping,
+    ShippingContext
+  };
